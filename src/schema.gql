@@ -1,0 +1,106 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Post {
+  id: Int!
+  title: String!
+  text: String!
+  authorId: Int!
+  author: User!
+  comments: [Comment!]
+}
+
+type Comment {
+  id: Int!
+  text: String!
+  authorId: Int!
+  postId: Int!
+  author: User!
+  post: Post!
+}
+
+type Role {
+  id: Int!
+  name: String!
+}
+
+type User {
+  id: Int!
+  name: String!
+  roles: [Role!]
+  posts: [Post!]
+  comments: [Comment!]
+}
+
+type Query {
+  comments: [Comment!]!
+  comment(id: Int!): Comment!
+  users: [User!]!
+  user(id: Int!): User!
+  posts: [Post!]!
+  post(id: Int!): Post!
+  roles: [Role!]!
+  role(id: Int!): Role!
+}
+
+type Mutation {
+  createComment(createCommentInput: CreateCommentInput!): Comment!
+  updateComment(updateCommentInput: UpdateCommentInput!): Comment!
+  removeComment(id: Int!): Comment!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  removePost(id: Int!): Post!
+  createRole(createRoleInput: CreateRoleInput!): Role!
+  updateRole(updateRoleInput: UpdateRoleInput!): Role!
+  removeRole(id: Int!): Role!
+}
+
+input CreateCommentInput {
+  authorId: Int!
+  postId: Int!
+  text: String!
+}
+
+input UpdateCommentInput {
+  authorId: Int
+  postId: Int
+  text: String
+  id: Int!
+}
+
+input CreateUserInput {
+  name: String!
+  roles: [Int!]
+}
+
+input UpdateUserInput {
+  name: String
+  roles: [Int!]
+  id: Int!
+}
+
+input CreatePostInput {
+  title: String!
+  text: String!
+  authorId: Int!
+}
+
+input UpdatePostInput {
+  title: String
+  text: String
+  authorId: Int
+  id: Int!
+}
+
+input CreateRoleInput {
+  name: String!
+}
+
+input UpdateRoleInput {
+  name: String
+  id: Int!
+}
